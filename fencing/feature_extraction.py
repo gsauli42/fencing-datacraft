@@ -84,4 +84,5 @@ def extract_features(frame_sequence):
     df_fe["mhip_speed_x_p1"] = savgol_filter(
         - df_fe["mhip_distance_x_p1"].values, 7, polyorder=3, deriv=1
     )
+    df_fe["idx"] = df_fe.index.values
     return df_fe
