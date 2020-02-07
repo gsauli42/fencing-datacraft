@@ -5,7 +5,7 @@ from scipy.signal import savgol_filter
 
 def extract_features_person_1frame(frame, out, label="p1"):
     """Extract features from a single frame for 1 person
-    
+
     Parameters
     ----------
     frame : ndarray of shape (n_frames, 3)
@@ -33,7 +33,7 @@ def extract_features_person_1frame(frame, out, label="p1"):
 
 def extract_features_1frame(frame):
     """Extract features from 1 frame containing 2 people
-    
+
     Parameters
     ----------
     frame : ndarray of shape (n_people=2, n_frames, 3)
@@ -59,12 +59,12 @@ def extract_features_1frame(frame):
 
 def extract_features(frame_sequence):
     """Extract features from a sequence of frames
-    
+
     Parameters
     ----------
     frame_sequence : sequence of ndarray of shape (n_people=2, n_frames, 3)
        input data
-    
+
     Returns
     -------
     df_fr: pd.DataFrame
@@ -82,6 +82,6 @@ def extract_features(frame_sequence):
         df_fe["mhip_distance_x_p0"].values, 7, polyorder=3, deriv=1
     )
     df_fe["mhip_speed_x_p1"] = savgol_filter(
-        df_fe["mhip_distance_x_p1"].values, 7, polyorder=3, deriv=1
+        - df_fe["mhip_distance_x_p1"].values, 7, polyorder=3, deriv=1
     )
     return df_fe
